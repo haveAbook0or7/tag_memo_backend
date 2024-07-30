@@ -1,0 +1,119 @@
+###
+GET https://7nyf45cjfj23mple5i4ymlaeua0jlegs.lambda-url.ap-northeast-1.on.aws/restore HTTP/1.1
+Authorization: 43f3e76821799d370e2ccc94d15ca5f3
+
+###
+POST https://7nyf45cjfj23mple5i4ymlaeua0jlegs.lambda-url.ap-northeast-1.on.aws/backup HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: 43f3e76821799d370e2ccc94d15ca5f3
+
+{
+    "testes": "testes",
+    "testen": 11
+}
+
+
+# InitiateAuth
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth
+
+{
+    "AuthFlow": "USER_PASSWORD_AUTH",
+        "ClientId": "3n7n8f4cc5mo8lakacd8gn2qoh",
+        "AuthParameters": {
+            "USERNAME": "haveabook.w@gmail.com",
+            "PASSWORD": "Test@test1"
+        }
+}
+
+###
+# RespondToAuthChallenge
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.RespondToAuthChallenge
+
+{
+    "ClientId": "3n7n8f4cc5mo8lakacd8gn2qoh",
+    "ChallengeName": "NEW_PASSWORD_REQUIRED",
+    "ChallengeResponses": {
+        "NEW_PASSWORD": "Waka7@ari",
+        "USERNAME": "haveabook.w@gmail.com"
+    },
+    "Session" : "AYABeCz88ksnil4IHMc2UeIwHkMAHQABAAdTZXJ2aWNlABBDb2duaXRvVXNlclBvb2xzAAEAB2F3cy1rbXMAUGFybjphd3M6a21zOmFwLW5vcnRoZWFzdC0xOjM0NjM3NzU0NDkyNzprZXkvZDNhY2NlYmQtNTdhOC00NWE0LTk1ZmEtYzc2YzY5ZDIwYTRkALgBAgEAeEKXmdzaENk3ERAW953p7ykc-IwqpjK9VSR56hoPhjKSATWKyn2UgL19dQq8tYZFCg8AAAB-MHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAyJq9F8hXVUydONMDcCARCAO_Teys2ggKT3FemA4_-MJ7K76ZfUohZackriQP2aDhIW5Kj3-u60XNQYePxo5sLihno3WEZXhR8yPOqtAgAAAAAMAAAQAAAAAAAAAAAAAAAAACWSASK8Kej5vunbIJ7MAfn_____AAAAAQAAAAAAAAAAAAAAAQAAALm8mxVwEyd2P5Gy-7L9OlBi9LsybXpuZOcfeye_k3wm5SGlAU1UjjHOmGhI-L4lgbXmntHyRZ6OTWsv_hIKvAG8QMFFfw_xbldCVzXJ3naPzjHsxun4szmt_G_laP3fjvrnAjVZYyLff0Ip_aaJT1WFLDtlGDzR5-rKa2koMGNJtLN6IfL2fLBHpMZ0iZoc0LpWemhtseFgvrrF85tla05nIl4jAAsevinzXriiFfB6lHWLvsJ0xCiuLcRumpLRa9LGoQS8x2yvblE"
+}
+###
+# RespondToAuthChallenge
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.RespondToAuthChallenge
+
+{
+    "ClientId": "2704f2l5fh6bcadjmu5jebadl0",
+    "ChallengeName": "SMS_MFA",
+    "ChallengeResponses": {
+        "SMS_MFA_CODE": "845051",
+        "USERNAME": "haveabook.w@gmail.com"
+    },
+    "Session" : "AYABeEJbg5Ch_RR5eRmNj-_sYpgAHQABAAdTZXJ2aWNlABBDb2duaXRvVXNlclBvb2xzAAEAB2F3cy1rbXMAUGFybjphd3M6a21zOmFwLW5vcnRoZWFzdC0xOjM0NjM3NzU0NDkyNzprZXkvZDNhY2NlYmQtNTdhOC00NWE0LTk1ZmEtYzc2YzY5ZDIwYTRkALgBAgEAeEKXmdzaENk3ERAW953p7ykc-IwqpjK9VSR56hoPhjKSATrW_JU9iOVA_rVgeA-MMyYAAAB-MHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAyjLXI5hNU32StRvVwCARCAO2ghgtSTrbH-_yXg4rF8D3zDXkUQOeMOhncC7w6nFU3ip_liHnuKl-RLtJO3KWe1ZvHn0Gmu5KJomcutAgAAAAAMAAAQAAAAAAAAAAAAAAAAAKUwi2kz5E6m8kYKYS1OE87_____AAAAAQAAAAAAAAAAAAAAAQAAAgAe47m6L-wtANah9Iiw3sJ1mRFsqMAebz6Kg-AzZEjvM3JGFyho5-_sS1SfdCjX5VPiYT8K-8gKFMcz66sBaYDps7H6Qe2oHGmxfTU2I9m6sklyAJIfGor_UAy_-cRuKa0I9IkqlBjZOs0XKaezZ4w8nIjrK17ueI9VISTd2dNFGIFHg6NCnIYUNnSjYlewbEuTz__Vs6dDLVPvo2TjFrHnPNi-8_87BZGetBXNXG4Cy7T0PP5siZLJ-HTwzTirwwFqLvGtp8usDvrbNfqD_LNaf9yRsux_GTu5iVEuAaoGaDlX10mrgWIwr9mqHM4sDkqc1tG_fr2jlCgII7wh6Sk543VQH1evT2Nq_jvPlAPXBWh9F43a2jbaUa1QFRyqdB20WzcBj93u7GQeM0aXkZl1brjGI9jU_lJNMvG8_UyJVy676N-htY2qI5Z9ii1mYQifm1W9x-bi7n9mbnZrWVrkuzEww2vEyx9gBzAnN_NIF53opNOfufdmCtohI8LSU702OU6_gPhpB_gonjKV31oXd9LHCvrzu2RXZfg-g34tIuIItycT-bGblR41h0DIBHL_uftn838wy_hu9JRjVBjGMbplUoyaGmVjHR2UJbQAbyIVeSCNMuJQni4VToFK-BBk9DzotLroUtRpWDSQINhrbKQBPJKNZTYepxpebdCX_w7v-Ej4rN7QKlsBvoASGdU"
+}
+
+###
+# ChangePassword
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.ChangePassword
+
+{
+   "AccessToken": "eyJraWQiOiJBSjFOWHg3ZUdVYmZBQTAycmRWZXZTcFl1bUp3T3V4SFo1azVhXC9UOHhZWT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI4NGY3OTVkZS1hMDZmLTQ5OWItOTQ1Ni0zMjAyMWFlYzdhY2EiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtbm9ydGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtbm9ydGhlYXN0LTFfWUYyaGgwWXpxIiwiY2xpZW50X2lkIjoiNm1qcHQxbmYwdmYwbjU4NHBvdDh1ZHRsY3EiLCJvcmlnaW5fanRpIjoiNDJmNGZhNGItMGY3OC00NjdhLWFkNmQtMjlmY2MwNmYzZDFlIiwiZXZlbnRfaWQiOiJiMjY2NGI2NS04MGU1LTQ1ZjQtYjBmMS03ODgyZjI4NGFlMmEiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjY0MDk2OTQ0LCJleHAiOjE2NjQxMDA1NDQsImlhdCI6MTY2NDA5Njk0NCwianRpIjoiZjZjMWRhODUtYjM2My00Y2I5LWFjZjgtMGEzMDc0NDlkNDQ3IiwidXNlcm5hbWUiOiI4NGY3OTVkZS1hMDZmLTQ5OWItOTQ1Ni0zMjAyMWFlYzdhY2EifQ.HwwKtu30CWzpDXxFzxs_C_yAdobuFn9km_F44ClPIBirgXICpl_lzM0c3FCKmY4MrntOjEGkG31VCniz6JUQU3sJNwcdb5pSJTj-bLV9-8j1n9UG8V61pMttGb_QaSwk_nV9_7Zej1TOQS8THCPZyaPa-tZGympigwzp2A3BvKybdz0Rb-x7mTXwBvRlWh5DO4M4UZ8OGtnj4L_lOesY5I0b76X0wrtb1xkVZuPMPHwuWbLB-SNeIJfynUzenW249rn9dyUx-pzzMdtdIL_TRZs0AQCeYjNrK65_JRWVvxiA-Ea-G1dgpzXjkZJ6gk4yTkXxxvg_IZCVRzTw9BepTQ",
+   "PreviousPassword": "Waka7@ari",
+   "ProposedPassword": "Waka7@ari",
+   "ClientMetadata": {"aaa": "aaa"},
+   "aaaa": "aaaa"
+}
+
+
+###
+# ForgotPassword
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.ForgotPassword
+
+{
+    "ClientId": "7ua9lg4u2ci6gkue7i5lk3008f",
+    "Username": "haveabook.w@gmail.com"
+}
+
+
+###
+# ConfirmForgotPassword
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.ConfirmForgotPassword
+
+{
+    "ClientId": "7ua9lg4u2ci6gkue7i5lk3008f",
+    "ConfirmationCode": "569851",
+    "Password": "Waka7@ri",
+    "Username": "haveabook.w@gmail.com"
+}
+
+###
+# AdminCreateUser
+POST https://cognito-idp.ap-northeast-1.amazonaws.com/ HTTP/1.1
+Content-Type: application/x-amz-json-1.1
+X-Amz-User-Agent: test-requets
+X-Amz-Target: AWSCognitoIdentityProviderService.AdminCreateUser
+
+{
+    "MessageAction": "RESEND",
+    "Username": "haveabook.w@gmail.com",
+    "UserPoolId": "ap-northeast-1_XICUGRnEa"
+}
